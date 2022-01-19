@@ -1,10 +1,7 @@
 <?php
 require_once 'vendor/autoload.php';
 
-// init configuration
-$clientID = '<YOUR_CLIENT_ID>';
-$clientSecret = '<YOUR_CLIENT_SECRET>';
-$redirectUri = '<REDIRECT_URI>';
+include 'secret.php';
 
 // create Client Request to access Google API
 $client = new Google_Client();
@@ -24,6 +21,11 @@ if (isset($_GET['code'])) {
   $google_account_info = $google_oauth->userinfo->get();
   $email =  $google_account_info->email;
   $name =  $google_account_info->name;
+
+  //echo "logged in";
+  //$_SESSION['user'] = $google_account_info->email;
+
+  //print_r($_SESSION);
 
   // now you can use this profile info to create account in your website and make user logged in.
 } else {
